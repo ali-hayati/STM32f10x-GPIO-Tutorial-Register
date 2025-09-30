@@ -23,7 +23,7 @@ I am going to use Keil IDE for the STM32 Register programming. I am also using S
 -ST-Link V2 Programmer
 - Proteuse V.8 (this Project simulink with Proteuse
 
-###Create the Project in Keil IDE
+### Create the Project in Keil IDE
 	Let’s begin by creating a project in Keil and selecting the 	appropriate microcontroller.
 	
 
@@ -40,6 +40,13 @@ Then, add the main file to the project. Along with it, I have also included RccC
 ![Project Target1](Images/Keil_IDE3.png)
 
 
+### GPIO Functions Overview
+
+| Function         | Description                                                                    |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `GPIOconfig`     | Configure one or more pins on a GPIO port with desired mode and configuration. |
+| `GPIO_Write_Pin` | Set or reset a specific GPIO pin.                                              |
+| `GPIO_Toggle`    | Toggle the state of a specific GPIO pin.                                       |
 
 
 
