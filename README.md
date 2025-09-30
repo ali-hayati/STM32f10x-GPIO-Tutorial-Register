@@ -40,14 +40,37 @@ Then, add the main file to the project. Along with it, I have also included RccC
 ![Project Target1](Images/Keil_IDE3.png)
 
 
-### GPIO Functions Overview
+### Functions Descriptions
 
 | Function         | Description                                                                    |
 | ---------------- | ------------------------------------------------------------------------------ |
 | `GPIOconfig`     | Configure one or more pins on a GPIO port with desired mode and configuration. |
 | `GPIO_Write_Pin` | Set or reset a specific GPIO pin.                                              |
-| `GPIO_Toggle`    | Toggle the state of a specific GPIO pin.                                       |
+| `GPIO_Toggle`    | Toggle the state of a specific GPIO pin.  
 
+###GPIO Modes and CNF Values (STM32F1 Reference)
+| Mode          | CNF | Description                    |
+| ------------- | --- | ------------------------------ |
+| Output 10 MHz | 00  | Push-pull                      |
+| Output 2 MHz  | 01  | Push-pull                      |
+| Output 50 MHz | 10  | Push-pull                      |
+| Input         | 00  | Analog                         |
+| Input         | 01  | Floating input                 |
+| Input         | 10  | Input with pull-up / pull-down |                                     |
+
+###PLL Configuration Overview
+This project includes register-level PLL configuration to achieve 72 MHz system clock.
+
+###PLL Register Settings (STM32F103)
+
+// Example from PLLconfig.c
+RCC->CR |= RCC_CR_HSEON;           // Enable HSE
+while(!(RCC->CR & RCC_CR_HSERDY)); // Wait until HSE ready
+RCC->CFGR |= RCC_CFGR_PLLSRC;      // PLL source = HSE
+RCC->CFGR |= RCC_CFGR_PLLMULL9;    // Multiply HSE by 9 -> 8 MHz * 9 = 72 MHz
+RCC->CR |= RCC_CR_PLLON;           // Enable PLL
+while(!(RCC->CR & RCC_CR_PLLRDY)); // Wait until PLL ready
+RCC->CFGR |= RCC_CFGR_SW_PLL;      // Select PLL as system clock
 
 
 
