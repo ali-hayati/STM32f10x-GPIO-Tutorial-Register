@@ -64,6 +64,7 @@ This project includes register-level PLL configuration to achieve 72 MHz system 
 ###PLL Register Settings (STM32F103)
 
 // Example from PLLconfig.c
+
 RCC->CR |= RCC_CR_HSEON;           // Enable HSE
 while(!(RCC->CR & RCC_CR_HSERDY)); // Wait until HSE ready
 RCC->CFGR |= RCC_CFGR_PLLSRC;      // PLL source = HSE
